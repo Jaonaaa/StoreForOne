@@ -1,0 +1,16 @@
+.scroll-perso
+    &::-webkit-scrollbar
+        -webkit-appearance: none
+        appearance: none
+        width: 4px
+        height: auto
+        position: absolute
+        opacity: 0
+
+    &::-webkit-scrollbar-track
+        transition: background-color 0.2s ease-in-out, all 0.2s ease-in-out
+        background-color: hsl(var(--sidebar-background))
+
+    &::-webkit-scrollbar-thumb
+        background-color: hsl(var(--sidebar-ring))
+        border-radius: 1rem
