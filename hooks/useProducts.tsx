@@ -1,7 +1,12 @@
-import React from "react";
+import { fetchProducts } from "@/services/api";
+import { useQuery } from "@tanstack/react-query";
 
 const useProducts = () => {
-  return <div>useProducts</div>;
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+  return { data, isPending, isError, error };
 };
 
 export default useProducts;
