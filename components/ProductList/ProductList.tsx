@@ -14,7 +14,7 @@ export const ProductList = () => {
     <div className="container-list">
       {[...Array(10).keys()].map((key) => (
         <div className="h-[25rem] w-full " key={key}>
-          <Skeleton className="w-full h-full" />
+          <Skeleton className="w-full h-full " />
         </div>
       ))}
     </div>
