@@ -14,7 +14,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <div
-      className="group aspect-6/9 h-[25rem] flex flex-col  overflow-hidden cursor-pointer"
+      className="group aspect-6/9 h-[25rem] flex flex-col  overflow-hidden cursor-pointer max-w-[23rem]"
       key={product.id}
       onClick={() => {
         console.log(product);
