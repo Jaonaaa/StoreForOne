@@ -1,6 +1,8 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ArrowDownZA, LayoutGrid, LayoutList } from "lucide-react";
+
 import "./FilterProduct.sass";
 
 export const FilterProduct = () => {
@@ -21,6 +23,14 @@ export const FilterProduct = () => {
           <SelectItem value="system">System</SelectItem>
         </SelectContent>
       </Select>
+
+      <div className="flex w-fit gap-2 items-center">
+        <div className="hover:bg-accent p-1 rounded-sm cursor-pointer transition-[background]">
+          <ArrowDownZA size={20} className="text-muted-foreground" />
+        </div>
+        <LayoutGrid size={20} className="text-muted-foreground" />
+        <LayoutList size={20} className="text-muted-foreground" />
+      </div>
     </div>
   );
 };

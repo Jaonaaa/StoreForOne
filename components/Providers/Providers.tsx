@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import ThemeProvider from "./ThemeProvider";
 import QueryProvider from "./QueryProvider";
+import ThemeProvider from "./ThemeProvider";
 
 type ProvidersProps = {
   children: ReactNode;
@@ -8,7 +8,7 @@ type ProvidersProps = {
 
 const Providers = ({ children }: ProvidersProps) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange enableColorScheme>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange enableColorScheme>
       <QueryProvider>{children}</QueryProvider>
     </ThemeProvider>
   );
