@@ -1,16 +1,15 @@
-import { ProductType } from "@/services/api";
-import Image from "next/image";
+import { ProductType } from "@/services/types";
 import { Star } from "lucide-react";
-
-import "./ProductCard.sass";
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import "./ProductCard.sass";
 
 type ProductCardProps = {
   product: ProductType;
 };
 export const ProductCard = ({ product }: ProductCardProps) => {
   const getDecimalStr = (num: number): string => {
-    return String(Math.abs(num % 1).toFixed(2)).split(".")[1];
+    return String(Math.abs(num % 1).toPrecision(2)).split(".")[1];
   };
 
   return (
@@ -26,6 +25,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           className="w-[68%] group-hover:scale-[0.95] transition-transform duration-200  object-contain m-0 flex aspect-square mix-blend-multiply"
           width={400}
           height={600}
+          draggable={false}
           src={product.image}
           priority
           alt={product.title}
@@ -42,7 +42,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <Star size={16} className="text-[hsl(var(--sidebar-primary))] fill-[hsl(var(--sidebar-primary))]" />
           </span>
           <Separator orientation="vertical" />
-          <span className="ml-1 text-muted-foreground">({product.rating.count}) évaluation</span>
+          <span className="ml-1 text-muted-foreground">{product.rating.count} évaluations</span>
         </div>
         <div className="price inline-flex items-center mt-1">
           <span className="text-2xl mr-1 text-muted-foreground">$</span>
