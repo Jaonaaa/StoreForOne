@@ -2,7 +2,6 @@
 import FilterProduct from "@/components/FilterProduct";
 import { fetchProducts } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import ProductCard from "./ProductCard";
 import "./ProductList.sass";
 
@@ -11,7 +10,6 @@ export const ProductList = () => {
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
-  const [open, setOpen] = useState(false);
 
   if (isPending || isError) {
     return <div>Loading... {error?.message}</div>;
