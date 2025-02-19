@@ -1,4 +1,4 @@
-import { ProductType } from "./types";
+import { NewProductType, ProductType } from "./types";
 
 const BASE_URL = "https://fakestoreapi.com/";
 
@@ -6,7 +6,7 @@ const fetchProducts = async (): Promise<ProductType[]> => {
   return await fetch(BASE_URL + "products").then((response) => response.json());
 };
 
-const addProducts = async (product: ProductType): Promise<ProductType[]> => {
+const addProducts = async (product: NewProductType): Promise<{ id: number }> => {
   return await fetch(BASE_URL + "products", {
     method: "POST",
     body: JSON.stringify(product),

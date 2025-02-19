@@ -17,7 +17,7 @@ export const useProductStore = create<ProductStore>((set) => ({
   setProducts: (products: ProductType[]) => set({ products: products }),
   setCategories: (categories: string[]) => set({ categories: categories }),
   addProduct: (product: ProductType) => {
-    set((state) => ({ products: [...state.products, product] }));
+    set((state) => ({ products: [product, ...state.products] }));
   },
   updateProduct: (id: number, newProduct: ProductType) =>
     set((state) => ({

@@ -57,6 +57,7 @@ body {
     /* perso */
     --card-bg: #F4F4F4;
     --card-h-bg: #0b1e143f;
+    --file-background: #0b1e143f;
 
   }
 
@@ -93,7 +94,9 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 148.98deg 60.67% 35.87%;
+    /* perso */
     --card-bg: #F4F4F4;
+    --file-background: #131413;
 
   }
 

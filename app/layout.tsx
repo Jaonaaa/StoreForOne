@@ -1,6 +1,7 @@
+import Providers from "@/components/Providers";
+import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Red_Hat_Text } from "next/font/google";
-import Providers from "@/components/Providers";
 import "./globals.css";
 
 const geistSans = Red_Hat_Text({
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} antialiased`}>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

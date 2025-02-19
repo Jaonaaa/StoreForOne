@@ -1,18 +1,30 @@
 import { ProductType } from "@/services/types";
 import { useEffect, useState } from "react";
 
+type Filter = {
+  title: string;
+  category: string;
+  order: "desc" | "asc" | undefined;
+};
 function useFilter(productsInitial: ProductType[]) {
   const [productsFiltred, setProductsFiltred] = useState(productsInitial);
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<Filter>({
     title: "",
     category: "", // we can use array to search mutiple categories
-    priceMin: 0,
-    priceMax: 9999,
-    order: "desc",
+    order: undefined,
   });
 
   const filterByTitle = (title: string) => {
     setFilter((prevFilter) => ({ ...prevFilter, title }));
+  };
+
+  const orderBy = (products: ProductType[], order: "desc" | "asc" | undefined): ProductType[] => {
+    if (order == null) return products;
+    return [...products].sort((a, b) => (order === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
+  };
+
+  const reorder = (order: "desc" | "asc" | undefined) => {
+    setFilter((prevFilter) => ({ ...prevFilter, order: order }));
   };
 
   const byTitle = (products: ProductType[], title: string): ProductType[] => {
@@ -36,24 +48,27 @@ function useFilter(productsInitial: ProductType[]) {
     productsCopy = byTitle(productsCopy, filter.title);
     // by category
     productsCopy = byCategory(productsCopy, filter.category);
+    // order by
+    productsCopy = orderBy(productsCopy, filter.order);
 
     setProductsFiltred(productsCopy);
   };
 
-  //   const reset = () => {
-  //     setFilter({ title: "", category: "", priceMin: 0, priceMax: 9999, order: "desc" });
-  //     setProductsFiltred([...productsInitial]);
-  //   };
+  const reset = () => {
+    setFilter({ title: "", category: "", order: "desc" });
+    setProductsFiltred([...productsInitial]);
+  };
 
   useEffect(() => {
     setProductsFiltred(productsInitial);
+    filterProduct();
   }, [productsInitial]);
 
   useEffect(() => {
     filterProduct();
   }, [filter]);
 
-  return { productsFiltred, filter, filterByTitle, filterByCategory };
+  return { productsFiltred, filter, filterByTitle, filterByCategory, reorder, reset };
 }
 
 export default useFilter;

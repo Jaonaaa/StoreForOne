@@ -10,11 +10,11 @@ import "./ProductList.sass";
 export const ProductList = () => {
   const { isPending } = useProducts();
   const products = useProductStore((state) => state.products);
-  const { productsFiltred, filterByTitle, filterByCategory } = useFilter(products);
+  const { productsFiltred, filterByTitle, filterByCategory, reorder } = useFilter(products);
 
   return (
     <>
-      <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} />
+      <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} reorder={reorder} />
 
       {isPending ? (
         <PlaceholderProducts />

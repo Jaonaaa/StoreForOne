@@ -1,21 +1,20 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import useCategories from "@/hooks/useCategories";
-import { capitalizeFirstLetter, throttle } from "@/lib/utils";
-import { useProductStore } from "@/store/productStore";
-import { ArrowDownZA, LayoutGrid, LayoutList } from "lucide-react";
+import { throttle } from "@/lib/utils";
+import { ArrowDownZA } from "lucide-react";
+import AddProduct from "../ProductList/AddProduct";
+import CategoryFilter from "./CategoryFilter";
 import "./FilterProduct.sass";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import OrderFilter from "./OrderFilter";
 
 type FilterProductProps = {
   filterByTitle: (title: string) => void;
   filterByCategory: (category: string) => void;
-  filterByOrder?: (order: string) => void;
+  reorder: (order: "desc" | "asc" | undefined) => void;
 };
-export const FilterProduct = ({ filterByCategory, filterByTitle }: FilterProductProps) => {
-  const {} = useCategories();
-  const categories = useProductStore((state) => state.categories);
-
+export const FilterProduct = ({ filterByCategory, filterByTitle, reorder }: FilterProductProps) => {
+  //
   const handleSearch = throttle((text: string) => {
     filterByTitle(text);
   }, 500);
@@ -31,28 +30,10 @@ export const FilterProduct = ({ filterByCategory, filterByTitle }: FilterProduct
           handleSearch(e.currentTarget.value);
         }}
       />
-      <Select
-        onValueChange={(value) => {
-          filterByCategory(value);
-        }}
-      >
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Catégories" />
-        </SelectTrigger>
-        <SelectContent side="bottom">
-          <SelectItem value=" ">Toutes</SelectItem>
-          {categories.map((category) => (
-            <SelectItem key={category} value={category}>
-              {capitalizeFirstLetter(category)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
+      <CategoryFilter filterByCategory={filterByCategory} />
+      <OrderFilter reorder={reorder} />
       <div className="flex w-fit gap-2 items-center ml-auto">
-        <div className=" p-1 rounded-sm cursor-pointer hover:bg-accent transition-[background]">
-          <ArrowDownZA size={20} className="text-muted-foreground" />
-        </div>
+        <AddProduct />
       </div>
     </div>
   );
