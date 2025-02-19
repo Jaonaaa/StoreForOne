@@ -12,3 +12,16 @@ export function getCookie(name: string): string | undefined {
   if (parts.length === 2) return parts.pop()?.split(";").shift();
   return undefined;
 }
+
+export const capitalizeFirstLetter = (text: string): string => (text.length > 0 ? text.charAt(0).toUpperCase() + text.slice(1) : text);
+
+export function throttle(func: Function, limit: number) {
+  let lastCall = 0;
+  return (...args: any[]) => {
+    const now = Date.now();
+    if (now - lastCall >= limit) {
+      lastCall = now;
+      func(...args);
+    }
+  };
+}

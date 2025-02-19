@@ -13,6 +13,7 @@ type ProductStore = {
 export const useProductStore = create<ProductStore>((set) => ({
   products: [],
   categories: [],
+
   setProducts: (products: ProductType[]) => set({ products: products }),
   setCategories: (categories: string[]) => set({ categories: categories }),
   addProduct: (product: ProductType) => {

@@ -1,33 +1,25 @@
 "use client";
 import FilterProduct from "@/components/FilterProduct";
+import useFilter from "@/hooks/useFilter";
 import useProducts from "@/hooks/useProducts";
 import { useProductStore } from "@/store/productStore";
-import { Skeleton } from "../ui/skeleton";
+import PlaceholderProducts from "./PlaceholderProducts";
 import ProductCard from "./ProductCard";
 import "./ProductList.sass";
 
 export const ProductList = () => {
   const { isPending } = useProducts();
   const products = useProductStore((state) => state.products);
-
-  const Placeholders = () => (
-    <div className="container-list">
-      {[...Array(10).keys()].map((key) => (
-        <div className="h-[25rem] w-full " key={key}>
-          <Skeleton className="w-full h-full " />
-        </div>
-      ))}
-    </div>
-  );
+  const { productsFiltred, filterByTitle, filterByCategory } = useFilter(products);
 
   return (
     <>
-      <FilterProduct />
+      <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} />
       {isPending ? (
-        <Placeholders />
+        <PlaceholderProducts />
       ) : (
         <div className="container-list">
-          {products?.map((product) => (
+          {productsFiltred?.map((product) => (
             <ProductCard product={product} key={product?.id} />
           ))}
         </div>
