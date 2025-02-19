@@ -52,8 +52,6 @@ export const FilterProduct = ({ filterByCategory, filterByTitle }: FilterProduct
         <div className=" p-1 rounded-sm cursor-pointer hover:bg-accent transition-[background]">
           <ArrowDownZA size={20} className="text-muted-foreground" />
         </div>
-        <LayoutGrid size={20} className="text-muted-foreground" />
-        <LayoutList size={20} className="text-muted-foreground" />
       </div>
     </div>
   );

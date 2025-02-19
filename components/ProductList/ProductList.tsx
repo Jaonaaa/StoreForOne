@@ -15,8 +15,13 @@ export const ProductList = () => {
   return (
     <>
       <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} />
+
       {isPending ? (
         <PlaceholderProducts />
+      ) : productsFiltred.length == 0 ? (
+        <div className="container-no-result">
+          <h4>Aucun résultat</h4>
+        </div>
       ) : (
         <div className="container-list">
           {productsFiltred?.map((product) => (
