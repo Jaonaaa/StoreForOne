@@ -19,6 +19,7 @@ export const FilterProduct = ({ filterByCategory, filterByTitle }: FilterProduct
   const handleSearch = throttle((text: string) => {
     filterByTitle(text);
   }, 500);
+
   return (
     <div className="w-full flex flex-row gap-2 pr-2">
       <Input
