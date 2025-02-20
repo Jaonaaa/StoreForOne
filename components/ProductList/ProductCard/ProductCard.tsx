@@ -3,6 +3,7 @@ import { ProductType } from "@/services/types";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import ProductDelete from "../ProductDelete";
+import ProductEdit from "../ProductEdit";
 import "./ProductCard.sass";
 
 type ProductCardProps = {
@@ -17,9 +18,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <div
       className="group aspect-6/9 h-[25rem] flex flex-col  overflow-hidden cursor-pointer max-w-[23rem]"
       key={product.id}
-      onClick={() => {
-        console.log(product);
-      }}
+      onClick={() => {}}
     >
       <div className=" w-full h-[calc(26rem-6rem)] flex justify-center items-center bg-[var(--card-bg)] relative overflow-clip">
         <Image
@@ -32,7 +31,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           alt={product.title}
         />
         <div className="absolute right-0 bottom-0 h-full w-full bg-[var(--card-h-bg)] pointer-events-none opacity-0 group-hover:opacity-100 transition-[opacity] duration-200" />
-        <div className="absolute right-2 bottom-2 opacity-0 pointer-events-none transition-all group-hover:opacity-100  group-hover:pointer-events-auto">
+        <div className="absolute right-2 bottom-2 flex gap-2 opacity-0 pointer-events-none transition-all group-hover:opacity-100  group-hover:pointer-events-auto">
+          <ProductEdit product={product} />
           <ProductDelete product={product} />
         </div>
       </div>

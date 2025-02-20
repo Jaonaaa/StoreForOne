@@ -7,6 +7,7 @@ import "./CategoryFilter.sass";
 type CategoryFilterProps = {
   filterByCategory: (text: string) => void;
 };
+
 export const CategoryFilter = ({ filterByCategory }: CategoryFilterProps) => {
   const {} = useCategories();
   const categories = useProductStore((state) => state.categories);

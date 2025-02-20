@@ -1,5 +1,4 @@
 import {
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -8,16 +7,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { deleteProduct } from "@/services/api";
 import { ProductType } from "@/services/types";
 import { useProductStore } from "@/store/productStore";
 import { AlertDialog } from "@radix-ui/react-alert-dialog";
 import { BadgeCheck, Trash } from "lucide-react";
-import "./ProductDelete.sass";
-import { Button } from "@/components/ui/button";
-import { deleteProduct } from "@/services/api";
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { capitalizeFirstLetter } from "@/lib/utils";
+import "./ProductDelete.sass";
 
 type ProductDeleteProps = {
   product: ProductType;
@@ -73,7 +71,8 @@ export const ProductDelete = ({ product, className = "" }: ProductDeleteProps) =
         <AlertDialogHeader>
           <AlertDialogTitle className="text-red-600">Êtes-vous absolument sûr ?</AlertDialogTitle>
           <AlertDialogDescription>
-            Cette action ne peut être annulée. Elle supprimera définitivement ce produit de nos serveurs.
+            Cette action ne peut être annulée. Elle supprimera définitivement ce produit (<strong>{product.title}</strong>) de nos
+            serveurs.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

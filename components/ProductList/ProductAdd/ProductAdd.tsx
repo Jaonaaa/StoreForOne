@@ -3,9 +3,8 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import AddProductForm from "./AddProductForm";
-import "./AddProduct.sass";
 
-export const AddProduct = () => {
+export const ProductAdd = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
   const closeSheet = () => setSheetOpen(false);
 
@@ -30,4 +29,4 @@ export const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default ProductAdd;

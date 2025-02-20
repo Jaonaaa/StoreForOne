@@ -1,12 +1,10 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { throttle } from "@/lib/utils";
-import { ArrowDownZA } from "lucide-react";
-import AddProduct from "../ProductList/AddProduct";
+import ProductAdd from "../ProductList/ProductAdd";
 import CategoryFilter from "./CategoryFilter";
-import "./FilterProduct.sass";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import OrderFilter from "./OrderFilter";
+import "./FilterProduct.sass";
 
 type FilterProductProps = {
   filterByTitle: (title: string) => void;
@@ -33,7 +31,7 @@ export const FilterProduct = ({ filterByCategory, filterByTitle, reorder }: Filt
       <CategoryFilter filterByCategory={filterByCategory} />
       <OrderFilter reorder={reorder} />
       <div className="flex w-fit gap-2 items-center ml-auto">
-        <AddProduct />
+        <ProductAdd />
       </div>
     </div>
   );

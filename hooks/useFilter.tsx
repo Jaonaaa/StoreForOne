@@ -33,6 +33,13 @@ function useFilter(productsInitial: ProductType[]) {
     return products.filter((product) => product.title.toLowerCase().includes(lowercasedText));
   };
 
+  /** Le filtre se fait directement en locale avec les produits récuperer mais pas avec
+      l'API de Fake Store pour permettre un filtre qui prend en compte les nouveaus produits ajoutés et
+      aussi pour la rapidité.
+      Mais on peut le filtre avec la méthode fetchProductsByCategories(category:string) dans /services/api
+      qui appel l'API de Fake Store pour permettre de récupérer les produits qui sont dans la catégorie selectionner
+   * @param category 
+   */
   const filterByCategory = (category: string) => {
     setFilter((prevFilter) => ({ ...prevFilter, category }));
   };

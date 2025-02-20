@@ -2,73 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
+import useEditProductForm from "@/hooks/useEditProductForm";
 import { capitalizeFirstLetter, randomNumber } from "@/lib/utils";
-import { addProducts } from "@/services/api";
-import { NewProductType } from "@/services/types";
-import { useProductStore } from "@/store/productStore";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { BadgeCheck, Upload } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { NewProductType, ProductType } from "@/services/types";
+import { Upload } from "lucide-react";
 import { z } from "zod";
-import { formSchema } from "./formType";
+import { formSchemaEdit } from "../../ProductAdd/AddProductForm/formType";
 
-type AddProductFormProps = {
+type EditProductFormProps = {
   closer: () => void;
+  product: ProductType;
 };
 
-export default function AddProductForm({ closer }: AddProductFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [imageSrc, setImageSrc] = useState<string | undefined>();
-  const addProductStore = useProductStore((state) => state.addProduct);
-  const categories = useProductStore((state) => state.categories);
-  const products = useProductStore((state) => state.products);
-  const { toast } = useToast();
+export default function EditProductForm({ closer, product }: EditProductFormProps) {
+  const { categories, form, imageSrc, isLoading, setImageSrc, mutate } = useEditProductForm({ closer, product });
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-      price: 0,
-      category: "",
-    },
-  });
-
-  async function onSubmit(data: z.infer<typeof formSchema>) {
-    setIsLoading(true);
-    const newProduct: NewProductType = {
+  async function onSubmit(data: z.infer<typeof formSchemaEdit>) {
+    const newProduct: ProductType = {
       ...data,
+      id: product.id,
       image: imageSrc!,
-      rating: {
-        count: +randomNumber(10, 400).toFixed(0),
-        rate: +randomNumber(0.1, 5).toFixed(1),
-      },
+      rating: { ...product.rating },
     };
-    const idNewProduct = await addProducts(newProduct);
-    addProductStore({ ...newProduct, id: idNewProduct.id + products.length });
-    added(newProduct);
-    setIsLoading(false);
-    closer();
-    form.reset();
+    mutate(newProduct);
   }
-
-  const added = (product: NewProductType) => {
-    toast({
-      title: "🎊 Produit ajouté 🎊",
-      description: (
-        <div className="flex gap-2 items-center mt-2">
-          <BadgeCheck size={28} className="text-white fill-[green]" />
-          <p>
-            Le produit <strong> {product?.title}</strong> - <strong>{capitalizeFirstLetter(product?.category)}</strong> a bien été
-            ajouté dans la liste des produits{" "}
-          </p>
-        </div>
-      ),
-      duration: 2200,
-    });
-  };
 
   return (
     <div className="grid gap-4 py-4 flex-1 overflow-y-auto">
@@ -151,8 +108,7 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
                 <FormLabel
                   htmlFor="image"
                   className="input-product w-full h-[17rem] aspect-6/9 border-[2px] cursor-pointer rounded-sm flex items-center justify-center flex-col
-                  transition-all hover:bg-[var(--file-background)]
-                  "
+                  transition-all hover:bg-[var(--file-background)]"
                 >
                   {imageSrc ? (
                     <div className=" w-full h-full flex justify-center items-center bg-[var(--file-background)] relative overflow-clip">
