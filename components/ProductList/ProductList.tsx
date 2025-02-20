@@ -15,7 +15,6 @@ export const ProductList = () => {
   return (
     <>
       <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} reorder={reorder} />
-
       {isPending ? (
         <PlaceholderProducts />
       ) : productsFiltred.length == 0 ? (

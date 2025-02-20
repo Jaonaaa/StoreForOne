@@ -3,8 +3,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import useEditProductForm from "@/hooks/useEditProductForm";
-import { capitalizeFirstLetter, randomNumber } from "@/lib/utils";
-import { NewProductType, ProductType } from "@/services/types";
+import { capitalizeFirstLetter } from "@/lib/utils";
+import { ProductType } from "@/services/types";
 import { Upload } from "lucide-react";
 import { z } from "zod";
 import { formSchemaEdit } from "../../ProductAdd/AddProductForm/formType";
