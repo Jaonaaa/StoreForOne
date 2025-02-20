@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Red_Hat_Text } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Red_Hat_Text({
+const Red_Had = Red_Hat_Text({
   variable: "--font-primary",
   subsets: ["latin"],
   weight: ["400"],
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} antialiased`}>
+      <body className={`${Red_Had.variable} antialiased`}>
         <Providers>{children}</Providers>
         <Toaster />
       </body>

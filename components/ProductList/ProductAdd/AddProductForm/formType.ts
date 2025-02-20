@@ -17,7 +17,7 @@ const fileSchema = z
   )
   .refine((file) => file.size < MAX_FILE_SIZE, "La taille maximale est de 10MB.");
 
-export const formSchema = z.object({
+const defaultScheme = {
   title: z.string().min(1, { message: "Veuillez entrer le nom de votre produit" }),
   description: z.string().min(1, { message: "Veuillez entrer une description de votre produit" }),
   price: z.coerce
@@ -26,20 +26,17 @@ export const formSchema = z.object({
     .min(1, { message: "Le prix minimum d'un produit est 1.00 $" })
     .max(9999, { message: "Le prix maximum d'un produit est 9999.00 $" }),
   category: z.string().min(1, { message: "Veuillez choisir une catégorie" }),
+};
+
+export const formSchema = z.object({
+  ...defaultScheme,
   image: fileSchema,
 });
 
 // EDIT
 
 const fileSchemaEdit = z.union([
-  z
-    .instanceof(File, { message: "Veuillez sélectionner une image" })
-    .refine((file) => imageMimeTypes.includes(file.type), {
-      message: "Le fichier doit être une image (jpeg, png, gif, webp)",
-    })
-    .refine((file) => file.size < MAX_FILE_SIZE, {
-      message: "La taille maximale est de 10MB",
-    }),
+  fileSchema,
   z
     .string()
     .url({ message: "L'URL doit être valide" })
@@ -54,13 +51,6 @@ const fileSchemaEdit = z.union([
 ]);
 
 export const formSchemaEdit = z.object({
-  title: z.string().min(1, { message: "Veuillez entrer le nom de votre produit" }),
-  description: z.string().min(1, { message: "Veuillez entrer une description de votre produit" }),
-  price: z.coerce
-    .number({})
-    .positive({ message: "Veuillez entrer un prix valide" })
-    .min(1, { message: "Le prix minimum d'un produit est 1.00 $" })
-    .max(9999, { message: "Le prix maximum d'un produit est 9999.00 $" }),
-  category: z.string().min(1, { message: "Veuillez choisir une catégorie" }),
+  ...defaultScheme,
   image: fileSchemaEdit,
 });

@@ -6,6 +6,10 @@ const fetchProducts = async (): Promise<ProductType[]> => {
   return await fetch(BASE_URL + "products").then((response) => response.json());
 };
 
+const fetchOneProducts = async (id: string): Promise<ProductType> => {
+  return await fetch(BASE_URL + `products/${id}`).then((response) => response.json());
+};
+
 const addProducts = async (product: NewProductType): Promise<{ id: number }> => {
   return await fetch(BASE_URL + "products", {
     method: "POST",
@@ -34,4 +38,4 @@ const fetchProductsByCategories = async (category: string): Promise<ProductType[
   return await fetch(BASE_URL + `products/categories/${category}`).then((response) => response.json());
 };
 
-export { fetchProducts, fetchCategories, fetchProductsByCategories, addProducts, updateProduct, deleteProduct };
+export { fetchProducts, fetchCategories, fetchProductsByCategories, addProducts, updateProduct, deleteProduct, fetchOneProducts };

@@ -4,7 +4,6 @@ import { throttle } from "@/lib/utils";
 import ProductAdd from "../ProductList/ProductAdd";
 import CategoryFilter from "./CategoryFilter";
 import OrderFilter from "./OrderFilter";
-import "./FilterProduct.sass";
 
 type FilterProductProps = {
   filterByTitle: (title: string) => void;

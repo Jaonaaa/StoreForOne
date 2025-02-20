@@ -29,3 +29,7 @@ export function throttle(func: Function, limit: number) {
 export const randomNumber = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
 };
+
+export const getDecimalStr = (num: number): string => {
+  return String(Math.abs(num % 1).toFixed(2)).split(".")[1];
+};
