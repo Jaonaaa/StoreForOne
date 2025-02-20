@@ -1,7 +1,8 @@
+import { Separator } from "@/components/ui/separator";
 import { ProductType } from "@/services/types";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import ProductDelete from "../ProductDelete";
 import "./ProductCard.sass";
 
 type ProductCardProps = {
@@ -30,10 +31,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           priority
           alt={product.title}
         />
-        <div
-          className="absolute right-0 bottom-0 h-full w-full bg-[var(--card-h-bg)] pointer-events-none opacity-0
-                  group-hover:opacity-100 transition-[opacity] duration-200"
-        ></div>
+        <div className="absolute right-0 bottom-0 h-full w-full bg-[var(--card-h-bg)] pointer-events-none opacity-0 group-hover:opacity-100 transition-[opacity] duration-200" />
+        <div className="absolute right-2 bottom-2 opacity-0 pointer-events-none transition-all group-hover:opacity-100  group-hover:pointer-events-auto">
+          <ProductDelete product={product} />
+        </div>
       </div>
       <div className="text-sm mt-2 min-h-[6rem] flex flex-col gap-[0.15rem]">
         <h6 className="text-sm font-semibold mt-2 line-clamp-1 text-ellipsis  mb-1"> {product.title}</h6>

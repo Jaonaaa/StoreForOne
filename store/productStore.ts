@@ -8,6 +8,7 @@ type ProductStore = {
   setCategories: (categories: string[]) => void;
   addProduct: (product: ProductType) => void;
   updateProduct: (id: number, updatedProduct: ProductType) => void;
+  deleteProduct: (id: number) => void;
 };
 
 export const useProductStore = create<ProductStore>((set) => ({
@@ -22,5 +23,9 @@ export const useProductStore = create<ProductStore>((set) => ({
   updateProduct: (id: number, newProduct: ProductType) =>
     set((state) => ({
       products: state.products.map((product) => (product.id === id ? newProduct : product)),
+    })),
+  deleteProduct: (id: number) =>
+    set((state) => ({
+      products: state.products.filter((product) => product.id !== id),
     })),
 }));

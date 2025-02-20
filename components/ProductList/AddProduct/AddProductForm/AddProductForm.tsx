@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { capitalizeFirstLetter } from "@/lib/utils";
+import { capitalizeFirstLetter, randomNumber } from "@/lib/utils";
 import { addProducts } from "@/services/api";
 import { NewProductType } from "@/services/types";
 import { useProductStore } from "@/store/productStore";
@@ -42,8 +42,8 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
       ...data,
       image: imageSrc!,
       rating: {
-        count: 0,
-        rate: 0,
+        count: +randomNumber(10, 400).toFixed(0),
+        rate: +randomNumber(0.1, 5).toFixed(1),
       },
     };
     const idNewProduct = await addProducts(newProduct);
@@ -61,12 +61,12 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
         <div className="flex gap-2 items-center mt-2">
           <BadgeCheck size={28} className="text-white fill-[green]" />
           <p>
-            Le produit
-            {product?.title} - {capitalizeFirstLetter(product?.category)} a bien été ajouté dans la liste des produits{" "}
+            Le produit <strong> {product?.title}</strong> - <strong>{capitalizeFirstLetter(product?.category)}</strong> a bien été
+            ajouté dans la liste des produits{" "}
           </p>
         </div>
       ),
-      duration: 60000,
+      duration: 2200,
     });
   };
 
