@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import "./Main.sass";
 
 type MainProps = {
   children?: ReactNode;

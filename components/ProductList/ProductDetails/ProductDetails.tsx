@@ -9,6 +9,7 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import ContainerDetails from "./ContainerDetails";
 import { variantsBlurImage, variantsProductDetails, variantsTextDetails, variantsTextHideDetails } from "./variants";
+import Magnet from "@/components/Magnet";
 
 type ProductDetailsProps = {
   open: boolean;
@@ -27,17 +28,20 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
 
   return (
     <ContainerDetails open={open} setOpen={setOpen}>
-      <SheetClose asChild>
-        <div
-          className="size-[2.8rem] md:size-[3.5rem]
+      <Magnet padding={65} disabled={false} magnetStrength={2.5}>
+        <SheetClose asChild>
+          <div
+            className="size-[2.8rem] md:size-[3.5rem]
           cursor-pointer flex items-center justify-center border border-[hsl(var(--foreground))] rounded-[50%]
           transition-[transform,background] group origin-center hover:scale-110 hover:bg-foreground"
-        >
-          <X className="group-hover:text-background transition-colors md:size-[24px] size-5" />
-        </div>
-      </SheetClose>
+          >
+            <X className="group-hover:text-background transition-colors md:size-[24px] size-5" />
+          </div>
+        </SheetClose>
+      </Magnet>
+
       <motion.div
-        className="w-full  lg:max-w-[65vw]  grid grid-cols-1 md:grid-cols-2 relative h-[75vh] mt-[3rem]"
+        className="w-full lg:max-w-[65vw] md:px-4  grid grid-cols-1 md:grid-cols-2 relative h-[75vh] mt-[3rem]"
         variants={variantsProductDetails}
         initial="hidden"
         animate="show"
@@ -95,8 +99,12 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
 
           <SheetClose asChild>
             <motion.div variants={variantsTextHideDetails} custom={delay + 0.7}>
-              <Button className="w-fit text-[0.92rem] md:text-lg p-7 rounded-none mt-1 md:mt-5 ">
-                Ajouter au panier <ShoppingCart className="!size-[1rem] md:!size-[1.2rem]" />
+              <Button className="w-fit text-[0.92rem] md:text-lg p-7 rounded-none mt-1 md:mt-5 group relative overflow-hidden">
+                <span className="z-[1]">Ajouter au panier</span>
+                <span className="z-[1]">
+                  <ShoppingCart className="!size-[1rem] md:!size-[1.2rem]" />
+                </span>
+                <span className="size-6 bg-[hsl(var(--sidebar-primary))] z-0 rounded-[50%] absolute left-[-2rem] top-[0.8rem] group-hover:scale-[35] transition-transform duration-300" />
               </Button>
             </motion.div>
           </SheetClose>

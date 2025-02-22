@@ -114,9 +114,3 @@ body {
   }
 
 }
-
-
-@theme {
-  --breakpoint-mdl: 58.75rem;
-
-}
