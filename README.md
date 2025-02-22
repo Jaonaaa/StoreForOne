@@ -1,4 +1,4 @@
-![Banner of StoreForOne](public/images/banner.png)
+![Banner of StoreForOne](public/images/banner.jpg)
 
 # StoreForOne
 
