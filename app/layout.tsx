@@ -7,7 +7,7 @@ import "./globals.css";
 const Red_Had = Red_Hat_Text({
   variable: "--font-primary",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {

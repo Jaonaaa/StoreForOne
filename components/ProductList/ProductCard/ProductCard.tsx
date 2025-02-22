@@ -7,7 +7,9 @@ import { useState } from "react";
 import ProductDelete from "../ProductDelete";
 import ProductDetails from "../ProductDetails";
 import ProductEdit from "../ProductEdit";
+import { motion } from "motion/react";
 import "./ProductCard.sass";
+import { variantsProductCard } from "../variant";
 
 type ProductCardProps = {
   product: ProductType;
@@ -33,7 +35,12 @@ export const ProductCard = ({ product, isMobile }: ProductCardProps) => {
   return (
     <>
       <ProductDetails open={open} setOpen={setOpen} {...details} />
-      <div className="group aspect-5/9 h-[25rem] flex flex-col w-full relative  overflow-hidden max-w-[23rem]" key={product.id}>
+      <motion.div
+        layoutId={product.id.toString()}
+        className="group aspect-5/9 h-[25rem] flex flex-col w-full relative  overflow-hidden max-w-[23rem]"
+        key={product.id}
+        variants={variantsProductCard}
+      >
         <div
           className="group/container w-full cursor-pointer h-[calc(26rem-6rem)] flex justify-center items-center bg-[var(--card-bg)] relative overflow-clip"
           onClick={viewDescription}
@@ -77,7 +84,7 @@ export const ProductCard = ({ product, isMobile }: ProductCardProps) => {
             </span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

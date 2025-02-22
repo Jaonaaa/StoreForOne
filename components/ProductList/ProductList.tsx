@@ -4,8 +4,10 @@ import useIsMobileTouch from "@/hooks/use-mobile-touch";
 import useFilter from "@/hooks/useFilter";
 import useProducts from "@/hooks/useProducts";
 import { useProductStore } from "@/store/productStore";
+import { motion } from "motion/react";
 import PlaceholderProducts from "./PlaceholderProducts";
 import ProductCard from "./ProductCard";
+import { variantsProductList } from "./variant";
 import "./ProductList.sass";
 
 export const ProductList = () => {
@@ -13,6 +15,7 @@ export const ProductList = () => {
   const products = useProductStore((state) => state.products);
   const { productsFiltred, filterByTitle, filterByCategory, reorder } = useFilter(products);
   const isMobile = useIsMobileTouch();
+
   return (
     <>
       <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} reorder={reorder} />
@@ -23,11 +26,17 @@ export const ProductList = () => {
           <h4>Aucun résultat</h4>
         </div>
       ) : (
-        <div className="container-list">
+        <motion.div
+          variants={variantsProductList}
+          animate="show"
+          initial="hidden"
+          className="container-list"
+          viewport={{ once: false }}
+        >
           {productsFiltred?.map((product) => (
             <ProductCard product={product} key={product?.id} isMobile={isMobile} />
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );
