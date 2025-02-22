@@ -1,7 +1,6 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import { ArrowDownZA } from "lucide-react";
-import "./OrderFilter.sass";
 import { useState } from "react";
 
 const orders: { label: string; value: "desc" | "asc" | undefined }[] = [

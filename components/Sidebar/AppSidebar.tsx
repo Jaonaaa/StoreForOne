@@ -4,10 +4,9 @@ import { NavMain } from "@/components/Sidebar/NavMain";
 import { NavUser } from "@/components/Sidebar/NavUser";
 import { TeamSwitcher } from "@/components/Sidebar/TeamSwicther";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar";
-import { AudioWaveform, Command, House, Sparkle } from "lucide-react";
+import { House, Sparkle } from "lucide-react";
 import * as React from "react";
 
-// This is sample data.
 const data = {
   user: {
     name: "Jaona Ferdinah",
@@ -19,16 +18,6 @@ const data = {
       name: "AllForOne",
       logo: Sparkle,
       plan: "Entreprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
     },
   ],
   navMain: [

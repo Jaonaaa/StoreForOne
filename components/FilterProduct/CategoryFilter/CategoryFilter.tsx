@@ -2,7 +2,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import useCategories from "@/hooks/useCategories";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { useProductStore } from "@/store/productStore";
-import "./CategoryFilter.sass";
 
 type CategoryFilterProps = {
   filterByCategory: (text: string) => void;

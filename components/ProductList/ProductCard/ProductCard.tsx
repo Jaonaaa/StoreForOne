@@ -35,6 +35,7 @@ export const ProductCard = ({ product, isMobile }: ProductCardProps) => {
   return (
     <>
       <ProductDetails open={open} setOpen={setOpen} {...details} />
+      {/* TOP */}
       <motion.div
         layoutId={product.id.toString()}
         className="group aspect-5/9 h-[25rem] flex flex-col w-full relative  overflow-hidden max-w-[23rem]"
@@ -65,6 +66,7 @@ export const ProductCard = ({ product, isMobile }: ProductCardProps) => {
           <ProductEdit product={product} />
           <ProductDelete product={product} />
         </div>
+        {/* BOTTOM */}
         <div className="text-sm mt-2 min-h-[6rem] flex flex-col gap-[0.15rem]">
           <h6 className="text-sm font-semibold mt-2 line-clamp-1 text-ellipsis  mb-1"> {product.title}</h6>
           <div className="review flex  gap-1 items-center">

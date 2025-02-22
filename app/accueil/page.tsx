@@ -13,7 +13,7 @@ export default async function Page() {
     <SidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
       <SidebarInset>
-        <Header />
+        <Header title="Produits" />
         <Main title="Accueil" subtitle="Voici la liste des produits disponibles chez StoreForOne">
           <ProductList />
         </Main>
