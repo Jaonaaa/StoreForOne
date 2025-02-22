@@ -17,9 +17,11 @@ export const ContainerDetails = ({ open, setOpen, children }: ContainerDetailsPr
         </SheetHeader>
         <SheetContent
           side={"bottom"}
-          className="focus-visible:outline-none [&>button]:hidden h-[99vh] ] ease-in-out p-0 border-[0] bg-none"
+          className="focus-visible:outline-none [&>button]:hidden h-[100dvh] md:h-[99dvh] max-h-[100dvh] md:max-h-[99dvh]
+          md:overflow-auto overflow-y-scroll
+          ease-in-out p-0 border-[0] bg-none"
         >
-          <div className="h-full w-full bg-background flex flex-col items-center pt-7">{children}</div>
+          <div className="h-full w-full bg-background flex flex-col items-center pt-7 px-8 md:px-0">{children}</div>
         </SheetContent>
       </Sheet>
     </>
