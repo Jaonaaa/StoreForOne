@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import { getDecimalStr } from "@/lib/utils";
 import { ProductType } from "@/services/types";
 import { Star } from "lucide-react";
 import Image from "next/image";
@@ -7,10 +8,10 @@ import ProductDelete from "../ProductDelete";
 import ProductDetails from "../ProductDetails";
 import ProductEdit from "../ProductEdit";
 import "./ProductCard.sass";
-import { getDecimalStr } from "@/lib/utils";
 
 type ProductCardProps = {
   product: ProductType;
+  isMobile?: boolean;
 };
 
 type statusProduct = {
@@ -19,7 +20,7 @@ type statusProduct = {
   type: "fetched" | "local";
 };
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, isMobile }: ProductCardProps) => {
   const [open, setOpen] = useState(false);
   // Pour vois les details des produits en ligne en recupere via Fake store API et pour les
   // produits en local em récupere tout simplement le produit dans la liste
@@ -32,14 +33,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <>
       <ProductDetails open={open} setOpen={setOpen} {...details} />
-      <div
-        className="group aspect-6/9 h-[25rem] flex flex-col w-full  overflow-hidden cursor-pointer max-w-[23rem]"
-        key={product.id}
-        onClick={viewDescription}
-      >
-        <div className=" w-full h-[calc(26rem-6rem)] flex justify-center items-center bg-[var(--card-bg)] relative overflow-clip">
+      <div className="group aspect-5/9 h-[25rem] flex flex-col w-full relative  overflow-hidden max-w-[23rem]" key={product.id}>
+        <div
+          className="group/container w-full cursor-pointer h-[calc(26rem-6rem)] flex justify-center items-center bg-[var(--card-bg)] relative overflow-clip"
+          onClick={viewDescription}
+        >
           <Image
-            className="w-[68%] group-hover:scale-[0.95] transition-transform duration-200  object-contain m-0 flex aspect-square mix-blend-multiply"
+            className="w-[68%] group-hover/container:scale-[0.9] transition-transform duration-200  object-contain m-0 flex aspect-square mix-blend-multiply"
             width={400}
             height={600}
             draggable={false}
@@ -48,10 +48,15 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             alt={product.title}
           />
           <div className="absolute right-0 bottom-0 h-full w-full bg-[var(--card-h-bg)] pointer-events-none opacity-0 group-hover:opacity-100 transition-[opacity] duration-200" />
-          <div className="absolute right-2 bottom-2 flex gap-2 opacity-0 pointer-events-none transition-all group-hover:opacity-100  group-hover:pointer-events-auto">
-            <ProductEdit product={product} />
-            <ProductDelete product={product} />
-          </div>
+        </div>
+        <div
+          className={`absolute right-2 bottom-[7rem] z-[2] flex gap-2 pointer-events-none transition-all group-hover:opacity-100  group-hover:pointer-events-auto
+            opacity-100 sm:opacity-0
+          ${isMobile ? "opacity-100" : "opacity-0"}
+          `}
+        >
+          <ProductEdit product={product} />
+          <ProductDelete product={product} />
         </div>
         <div className="text-sm mt-2 min-h-[6rem] flex flex-col gap-[0.15rem]">
           <h6 className="text-sm font-semibold mt-2 line-clamp-1 text-ellipsis  mb-1"> {product.title}</h6>

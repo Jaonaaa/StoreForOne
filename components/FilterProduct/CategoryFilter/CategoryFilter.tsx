@@ -17,10 +17,10 @@ export const CategoryFilter = ({ filterByCategory }: CategoryFilterProps) => {
         filterByCategory(value);
       }}
     >
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Catégories" />
+      <SelectTrigger className="mdl:w-[180px] w-full">
+        <SelectValue className="text-sm md:text-base " placeholder="Catégories" />
       </SelectTrigger>
-      <SelectContent side="bottom">
+      <SelectContent className="text-sm md:text-base " side="bottom">
         <SelectItem value=" ">Toutes</SelectItem>
         {categories.map((category) => (
           <SelectItem key={category} value={category}>

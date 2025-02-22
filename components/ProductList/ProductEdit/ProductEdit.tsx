@@ -27,8 +27,8 @@ export const ProductEdit = ({ product }: ProductEditProps) => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Modifier un produit</SheetTitle>
-            <SheetDescription>
+            <SheetTitle className="text-base md:text-lg">Modifier un produit</SheetTitle>
+            <SheetDescription className="text-xs md:text-sm">
               Entrer les nouveaux détails de votre produit ici. Cliquer confirmer quand vous avez finis.
             </SheetDescription>
           </SheetHeader>

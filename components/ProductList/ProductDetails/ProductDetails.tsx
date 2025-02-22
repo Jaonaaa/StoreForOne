@@ -52,7 +52,6 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
           <div>
             <p className="leading-7">{currentProduct?.description}</p>
           </div>
-
           <div className="price inline-flex items-baseline ">
             <span className="text-[2.75rem] ">$</span>
             <span className="text-[2.75rem]">{currentProduct && +currentProduct?.price.toString().split(".")[0]}</span>
@@ -62,9 +61,11 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
             </span>
           </div>
 
-          <Button className="w-fit text-lg p-7 rounded-none mt-5 ">
-            Ajouter au panier <ShoppingCart className="!size-[1.2rem]" />
-          </Button>
+          <SheetClose asChild>
+            <Button className="w-fit text-lg p-7 rounded-none mt-5 ">
+              Ajouter au panier <ShoppingCart className="!size-[1.2rem]" />
+            </Button>
+          </SheetClose>
 
           <div className="review flex  gap-1 items-baseline mt-auto">
             <div className="text-gray-400 inline-flex gap-x-1">

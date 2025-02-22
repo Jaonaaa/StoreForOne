@@ -12,15 +12,17 @@ export const ProductAdd = () => {
     <>
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger asChild>
-          <Button>
-            <span className="ml-2">Ajouter un produit</span>
+          <Button className="size-8 sm:size-9  mdl:size-auto">
+            <span className="ml-2 hidden mdl:inline-block">Ajouter un produit</span>
             <Plus size={16} />
           </Button>
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Ajouter un produit</SheetTitle>
-            <SheetDescription>Entrer les détails de votre produit ici. Cliquer confirmer quand vous avez finis.</SheetDescription>
+            <SheetTitle className="text-base md:text-lg">Ajouter un produit</SheetTitle>
+            <SheetDescription className="text-xs md:text-sm">
+              Entrer les détails de votre produit ici. Cliquer confirmer quand vous avez finis.
+            </SheetDescription>
           </SheetHeader>
           <AddProductForm closer={closeSheet} />
         </SheetContent>

@@ -112,4 +112,11 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+}
+
+
+@theme {
+  --breakpoint-mdl: 58.75rem;
+
 }

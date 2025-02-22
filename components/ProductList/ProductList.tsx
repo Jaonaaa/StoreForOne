@@ -1,5 +1,6 @@
 "use client";
 import FilterProduct from "@/components/FilterProduct";
+import useIsMobileTouch from "@/hooks/use-mobile-touch";
 import useFilter from "@/hooks/useFilter";
 import useProducts from "@/hooks/useProducts";
 import { useProductStore } from "@/store/productStore";
@@ -11,7 +12,7 @@ export const ProductList = () => {
   const { isPending } = useProducts();
   const products = useProductStore((state) => state.products);
   const { productsFiltred, filterByTitle, filterByCategory, reorder } = useFilter(products);
-
+  const isMobile = useIsMobileTouch();
   return (
     <>
       <FilterProduct filterByCategory={filterByCategory} filterByTitle={filterByTitle} reorder={reorder} />
@@ -24,7 +25,7 @@ export const ProductList = () => {
       ) : (
         <div className="container-list">
           {productsFiltred?.map((product) => (
-            <ProductCard product={product} key={product?.id} />
+            <ProductCard product={product} key={product?.id} isMobile={isMobile} />
           ))}
         </div>
       )}

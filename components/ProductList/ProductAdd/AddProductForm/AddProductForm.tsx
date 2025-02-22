@@ -36,10 +36,10 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             control={form.control}
             name="title"
             render={({ field }) => (
-              <FormItem className="mb-3">
-                <FormLabel>Nom</FormLabel>
+              <FormItem className="mb-2 md:mb-3">
+                <FormLabel className="text-xs md:text-sm">Nom</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nom de votre produit" {...field} />
+                  <Input className="text-sm md:text-base" placeholder="Nom de votre produit" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -50,10 +50,10 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             control={form.control}
             name="description"
             render={({ field }) => (
-              <FormItem className="mb-3">
-                <FormLabel>Description</FormLabel>
+              <FormItem className="mb-2 md:mb-3">
+                <FormLabel className="text-xs md:text-sm">Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Description de votre produit" {...field} />
+                  <Input className="text-sm md:text-base" placeholder="Description de votre produit" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -64,15 +64,15 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             control={form.control}
             name="category"
             render={({ field }) => (
-              <FormItem className="mb-3">
-                <FormLabel> Catégorie</FormLabel>
+              <FormItem className="mb-2 md:mb-3">
+                <FormLabel className="text-xs md:text-sm"> Catégorie</FormLabel>
                 <Select onValueChange={field.onChange} name="category" defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Selectionne une catégorie" />
+                      <SelectValue className="text-sm md:text-base" placeholder="Selectionne une catégorie" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="text-sm md:text-base">
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {capitalizeFirstLetter(category)}
@@ -90,10 +90,10 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             control={form.control}
             name="price"
             render={({ field }) => (
-              <FormItem className="mb-3">
-                <FormLabel>Prix</FormLabel>
+              <FormItem className="mb-2 md:mb-3">
+                <FormLabel className="text-xs md:text-sm">Prix</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} />
+                  <Input type="number" className="text-sm md:text-base" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,11 +104,13 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             control={form.control}
             name="image"
             render={({ field: { value, onChange, ...fieldProps } }) => (
-              <FormItem className="mb-3">
-                <h6 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"> Photo </h6>
+              <FormItem className="mb-2 md:mb-3">
+                <h6 className="text-xs md:text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Photo
+                </h6>
                 <FormLabel
                   htmlFor="image"
-                  className="input-product w-full h-[17rem] aspect-6/9 border-[2px] cursor-pointer rounded-sm flex items-center justify-center flex-col
+                  className="input-product w-full h-[14rem] md:h-[17rem] aspect-6/9 border-[2px] cursor-pointer rounded-sm flex items-center justify-center flex-col
                   transition-all hover:bg-[var(--file-background)]"
                 >
                   {imageSrc ? (
@@ -118,9 +120,9 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
                   ) : (
                     <>
                       <span className="mb-4">
-                        <Upload className="text-sm text-muted-foreground" />
+                        <Upload className="text-xs md:text-sm text-muted-foreground" />
                       </span>
-                      <span className="text-sm text-muted-foreground">Uploader un fichier</span>
+                      <span className="text-xs md:text-sm text-muted-foreground">Uploader un fichier</span>
                     </>
                   )}
                 </FormLabel>
@@ -146,7 +148,7 @@ export default function AddProductForm({ closer }: AddProductFormProps) {
             )}
           />
 
-          <Button className="w-full mt-3" type="submit" disabled={isLoading}>
+          <Button className="w-full mt-3 text-xs md:text-sm" type="submit" disabled={isLoading}>
             Confirmer
           </Button>
         </form>

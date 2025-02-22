@@ -30,9 +30,9 @@ export const OrderFilter = ({ reorder }: OrderFilterProps) => {
       <DropdownMenuTrigger asChild>
         <div className="ml-3 p-1 min-w-6 min-h-4 flex items-center justify-center rounded-sm cursor-pointer hover:bg-accent transition-[background]">
           <ArrowDownZA size={20} className="text-muted-foreground" />
-          <span className="ml-4 text-sm text-foreground pr-2">
-            {orderLabel !== "Aucun" && orderLabel && "Trier par : " + orderLabel}
-          </span>
+          {orderLabel !== "Aucun" && orderLabel && (
+            <span className={`ml-4 text-sm md:text-base text-foreground pr-2`}>Trier par : {orderLabel}</span>
+          )}
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">

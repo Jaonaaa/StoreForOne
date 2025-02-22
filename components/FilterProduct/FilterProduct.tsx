@@ -17,20 +17,25 @@ export const FilterProduct = ({ filterByCategory, filterByTitle, reorder }: Filt
   }, 500);
 
   return (
-    <div className="w-full flex flex-row gap-2 pr-2">
-      <Input
-        name="filter"
-        className="max-w-[17rem]"
-        type="search"
-        placeholder="Rechercher un produit"
-        onInput={(e) => {
-          handleSearch(e.currentTarget.value);
-        }}
-      />
-      <CategoryFilter filterByCategory={filterByCategory} />
-      <OrderFilter reorder={reorder} />
-      <div className="flex w-fit gap-2 items-center ml-auto">
-        <ProductAdd />
+    <div className="w-full flex gap-2 pr-2 md:flex-row flex-col">
+      <div className="flex gap-2 md:gap-2">
+        <Input
+          name="filter"
+          className="max-w-[17rem] 
+          text-sm md:text-base md:w-[13rem] lg:w-[20rem]"
+          type="search"
+          placeholder="Rechercher un produit"
+          onInput={(e) => {
+            handleSearch(e.currentTarget.value);
+          }}
+        />
+        <CategoryFilter filterByCategory={filterByCategory} />
+      </div>
+      <div className="flex w-full mt-2 md:mt-0">
+        <OrderFilter reorder={reorder} />
+        <div className="flex w-fit gap-2 items-center ml-auto">
+          <ProductAdd />
+        </div>
       </div>
     </div>
   );

@@ -67,19 +67,19 @@ export const ProductDelete = ({ product, className = "" }: ProductDeleteProps) =
   return (
     <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
       <DeleteAlert />
-      <AlertDialogContent>
+      <AlertDialogContent className=" max-md:w-[85%] max-md:rounded-sm">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-red-600">Êtes-vous absolument sûr ?</AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogTitle className="text-red-600 text-base md:text-lg">Êtes-vous absolument sûr ?</AlertDialogTitle>
+          <AlertDialogDescription className="text-xs md:text-sm">
             Cette action ne peut être annulée. Elle supprimera définitivement ce produit (<strong>{product.title}</strong>) de nos
             serveurs.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Annuler</AlertDialogCancel>
+        <AlertDialogFooter className="flex-row items-center justify-center max-md:gap-4">
+          <AlertDialogCancel className="text-xs md:text-sm max-md:mt-0">Annuler</AlertDialogCancel>
           <Button
             disabled={isLoading}
-            className="bg-red-600 transition-colors hover:bg-red-900 text-white"
+            className="bg-red-600 transition-colors hover:bg-red-900 text-white text-xs md:text-sm"
             onClick={handleDeleteProduct}
           >
             Supprimer
