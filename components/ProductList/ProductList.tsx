@@ -7,7 +7,7 @@ import { useProductStore } from "@/store/productStore";
 import { motion } from "motion/react";
 import PlaceholderProducts from "./PlaceholderProducts";
 import ProductCard from "./ProductCard";
-import { variantsProductList } from "./variant";
+import { variantsProductList } from "./variants";
 import "./ProductList.sass";
 
 export const ProductList = () => {

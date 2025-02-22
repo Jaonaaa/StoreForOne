@@ -1,14 +1,14 @@
+import { Button } from "@/components/ui/button";
 import { SheetClose } from "@/components/ui/sheet";
+import { Skeleton } from "@/components/ui/skeleton";
 import useProductDetails from "@/hooks/useProductDetails";
+import { getDecimalStr } from "@/lib/utils";
 import { ProductType } from "@/services/types";
 import { ShoppingCart, Star, X } from "lucide-react";
-import ContainerDetails from "./ContainerDetails";
-import "./ProductDetails.sass";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { getDecimalStr } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import ContainerDetails from "./ContainerDetails";
+import { variantsBlurImage, variantsProductDetails, variantsTextDetails, variantsTextHideDetails } from "./variants";
 
 type ProductDetailsProps = {
   open: boolean;
@@ -20,6 +20,7 @@ type ProductDetailsProps = {
 export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDetailsProps) => {
   const { data: currentProduct, isError, isPending, refetch } = useProductDetails({ type, id, product });
   const [imgLoaded, setImgLoaded] = useState(false);
+  const delay = 0.3;
   useEffect(() => {
     if (open) refetch();
   }, [open]);
@@ -35,10 +36,22 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
           <X className="group-hover:text-background transition-colors md:size-[24px] size-5" />
         </div>
       </SheetClose>
-      <div className="w-full  lg:max-w-[65vw]  grid grid-cols-1 md:grid-cols-2 relative h-[75vh] mt-[3rem]">
+      <motion.div
+        className="w-full  lg:max-w-[65vw]  grid grid-cols-1 md:grid-cols-2 relative h-[75vh] mt-[3rem]"
+        variants={variantsProductDetails}
+        initial="hidden"
+        animate="show"
+        exit={"exit"}
+        onAnimationComplete={() => {
+          console.log("animation complete");
+        }}
+      >
+        {/* LEFT */}
         <div className="left w-full h-full bg-[var(--card-bg)] flex justify-center items-center relative">
           {!imgLoaded && <Skeleton className="w-full h-full z-[2] absolute inset-0" />}
-          <img
+          <motion.img
+            variants={variantsBlurImage}
+            custom={delay}
             className="w-[65%] md:w-[75%] py-5 md:py-0 object-contain m-0 flex aspect-square mix-blend-multiply"
             src={currentProduct?.image}
             alt={currentProduct?.title}
@@ -48,37 +61,57 @@ export const ProductDetails = ({ open, setOpen, type, id, product }: ProductDeta
             loading="lazy"
           />
         </div>
+        {/* RIGHT */}
         <div className="right pl-[0] md:pl-[4vw] pt-[3.5rem] md:pt-[7rem] flex flex-col gap-5 md:gap-7 pb-4">
-          <h2 className="font-semibold text-xl md:text-3xl">{currentProduct?.title}</h2>
-          <div>
-            <p className="leading-5 text-xs md:leading-7">{currentProduct?.description}</p>
+          <h2 className="font-semibold text-xl md:text-3xl overflow-hidden">
+            <motion.span
+              className="inline-block"
+              variants={variantsTextDetails}
+              custom={delay + 0.3}
+              onAnimationComplete={() => {
+                console.log("Animation head");
+              }}
+            >
+              {currentProduct?.title}
+            </motion.span>
+          </h2>
+          <div className="overflow-hidden">
+            <motion.p className="leading-5 text-xs md:leading-7" variants={variantsTextHideDetails} custom={delay + 0.5}>
+              {currentProduct?.description}
+            </motion.p>
           </div>
-          <div className="price inline-flex items-baseline ">
-            <span className="text-[2rem] md:text-[2.75rem] ">$</span>
-            <span className="text-[2rem] md:text-[2.75rem]">{currentProduct && +currentProduct?.price.toString().split(".")[0]}</span>
-            <span className="text-[2rem] md:text-[2.75rem] ">
+          <div className="price inline-flex items-baseline overflow-hidden">
+            <motion.span custom={delay + 0.65} variants={variantsTextDetails} className="text-[2rem] md:text-[2.75rem] ">
+              $
+            </motion.span>
+            <motion.span custom={delay + 0.65} variants={variantsTextDetails} className="text-[2rem] md:text-[2.75rem]">
+              {currentProduct && +currentProduct?.price.toString().split(".")[0]}
+            </motion.span>
+            <motion.span custom={delay + 0.65} variants={variantsTextDetails} className="text-[2rem] md:text-[2.75rem] ">
               {"."}
               {currentProduct && getDecimalStr(currentProduct?.price)}
-            </span>
+            </motion.span>
           </div>
 
           <SheetClose asChild>
-            <Button className="w-fit text-[0.92rem] md:text-lg p-7 rounded-none mt-1 md:mt-5 ">
-              Ajouter au panier <ShoppingCart className="!size-[1rem] md:!size-[1.2rem]" />
-            </Button>
+            <motion.div variants={variantsTextHideDetails} custom={delay + 0.7}>
+              <Button className="w-fit text-[0.92rem] md:text-lg p-7 rounded-none mt-1 md:mt-5 ">
+                Ajouter au panier <ShoppingCart className="!size-[1rem] md:!size-[1.2rem]" />
+              </Button>
+            </motion.div>
           </SheetClose>
 
-          <div className="review flex  gap-1 items-baseline mt-auto">
+          <motion.div className="review flex  gap-1 items-baseline mt-auto" variants={variantsTextHideDetails} custom={delay + 0.9}>
             <div className="text-gray-400 inline-flex gap-x-1">
               <span className="ml-1  text-sm md:text-base text-muted-foreground">{currentProduct?.rating.rate}</span>
               <Star className="size-[16px] md:size-[22px] text-[hsl(var(--sidebar-primary))]  fill-[hsl(var(--sidebar-primary))]" />
             </div>
             <span className="ml-1  text-sm md:text-base text-muted-foreground">{currentProduct?.rating.count} évaluations</span>
-          </div>
+          </motion.div>
         </div>
 
         <div className="title absolute"></div>
-      </div>
+      </motion.div>
     </ContainerDetails>
   );
 };

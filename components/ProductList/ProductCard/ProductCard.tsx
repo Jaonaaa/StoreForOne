@@ -2,14 +2,14 @@ import { Separator } from "@/components/ui/separator";
 import { getDecimalStr } from "@/lib/utils";
 import { ProductType } from "@/services/types";
 import { Star } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import ProductDelete from "../ProductDelete";
 import ProductDetails from "../ProductDetails";
 import ProductEdit from "../ProductEdit";
-import { motion } from "motion/react";
+import { variantsProductCard } from "../variants";
 import "./ProductCard.sass";
-import { variantsProductCard } from "../variant";
 
 type ProductCardProps = {
   product: ProductType;
