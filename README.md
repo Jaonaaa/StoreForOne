@@ -1,4 +1,4 @@
-![Banner of StoreForOne](https://github.com/Jaonaaa/StoreForOne/tree/develop/public/images/banner.png)
+![Banner of StoreForOne](public/images/banner.png)
 
 # StoreForOne
 
