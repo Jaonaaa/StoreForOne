@@ -9,7 +9,6 @@ type AddProductFormProps = {
   closer: () => void;
 };
 
-// TODO: Refactor this
 export default function AddProductForm({ closer }: AddProductFormProps) {
   const { categories, form, imageSrc, isLoading, setImageSrc, mutate } = useAddProductForm({ closer: closer });
 

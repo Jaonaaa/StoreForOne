@@ -9,7 +9,6 @@ import ProductDelete from "../ProductDelete";
 import ProductDetails from "../ProductDetails";
 import ProductEdit from "../ProductEdit";
 import { variantsProductCard } from "../variants";
-import "./ProductCard.sass";
 
 type ProductCardProps = {
   product: ProductType;

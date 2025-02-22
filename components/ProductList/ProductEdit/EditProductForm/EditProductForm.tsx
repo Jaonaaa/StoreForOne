@@ -9,7 +9,6 @@ type EditProductFormProps = {
   product: ProductType;
 };
 
-// TODO: Refactor this
 export default function EditProductForm({ closer, product }: EditProductFormProps) {
   const { categories, form, imageSrc, isLoading, setImageSrc, mutate } = useEditProductForm({ closer, product });
 

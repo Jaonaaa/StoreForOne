@@ -15,7 +15,6 @@ import { useProductStore } from "@/store/productStore";
 import { AlertDialog } from "@radix-ui/react-alert-dialog";
 import { BadgeCheck, Trash } from "lucide-react";
 import { useState } from "react";
-import "./ProductDelete.sass";
 
 type ProductDeleteProps = {
   product: ProductType;
