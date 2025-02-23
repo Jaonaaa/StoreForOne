@@ -45,6 +45,9 @@ Before running the application, make sure you have **Node.js** installed on your
 ```sh
 git clone https://github.com/Jaonaaa/StoreForOne.git
 cd storeforone
+# If the you are in the main branch and there is nothing
+# there except a README.md file, switch to the branch `develop`
+# by using the command `git checkout develop`
 npm install
 npm run dev
 ```
