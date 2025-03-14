@@ -1,0 +1,23 @@
+.scroll-perso
+    &::-webkit-scrollbar
+        -webkit-appearance: none
+        appearance: none
+        width: 2px
+        height: auto
+        position: absolute
+        opacity: 0
+
+    &::-webkit-scrollbar-track
+        transition: background-color 0.2s ease-in-out, all 0.2s ease-in-out
+        background-color: hsl(var(--sidebar-background))
+
+    &::-webkit-scrollbar-thumb
+        background-color: hsl(var(--sidebar-ring))
+        border-radius: 1rem
+
+.container-list
+    @apply pb-8 md:pb-9 pr-1 scroll-perso justify-items-center mt-4 grid flex-1 w-full overflow-y-scroll grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 grid-rows-none gap-6 sm:gap-4 sm:max-h-[calc(100vh-14rem)]  md:max-h-[calc(100vh-13rem)] lg:max-h-[calc(100vh-12rem)]  max-h-[calc(100vh-17rem)]
+.container-no-result
+    @apply flex flex-1 w-full justify-center items-center
+    h4
+        @apply text-base md:text-lg uppercase tracking-wider translate-y-[-10rem] md:translate-y-[-4rem]
